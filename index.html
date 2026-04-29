@@ -13,130 +13,163 @@
             --bg-sidebar-hover: #1a3875;
             --sidebar-text: #ffffff;
             --border-active: #ff0000;
-            --bg-main: #f5f7fa;
+            --bg-main: #f8fafc; 
             --primary-blue: #3b7af5;
             --primary-hover: #295ec2;
-            --text-dark: #333333;
-            --text-muted: #666666;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
             --border-color: #e2e8f0;
-            --success-color: #2e7d32;
-            --warning-bg: #fef5e7;
-            --warning-border: #f8c471;
+            --success-color: #16a34a;
+            --warning-bg: #fffbeb;
+            --warning-border: #fcd34d;
             --danger-color: #e74c3c;
             --white: #ffffff;
+            --input-bg-readonly: #f1f5f9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { display: flex; height: 100vh; background-color: var(--bg-main); color: var(--text-dark); overflow: hidden; }
 
-        /* ================= Sidebar (Menu Lateral) ================= */
-        .sidebar { width: 240px; background-color: var(--bg-sidebar); display: flex; flex-direction: column; overflow-y: auto; }
+        /* ================= Sidebar ================= */
+        .sidebar { width: 240px; background-color: var(--bg-sidebar); display: flex; flex-direction: column; overflow-y: auto; z-index: 10; }
         .menu-item { padding: 16px 20px; color: var(--sidebar-text); text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 4px solid transparent; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .menu-item:hover { background-color: var(--bg-sidebar-hover); }
         .menu-item.active { border-left-color: var(--border-active); background-color: rgba(255,255,255,0.05); }
         .menu-item i { font-size: 20px; margin-bottom: 8px; }
         .menu-item span { font-size: 12px; font-weight: 500; text-align: center; }
-        .submenu { background-color: #ffffff; border-right: 1px solid var(--border-color); width: 250px; display: flex; flex-direction: column; padding: 20px 0; }
+        
+        .submenu { background-color: #ffffff; border-right: 1px solid var(--border-color); width: 250px; display: flex; flex-direction: column; padding: 20px 0; z-index: 5; box-shadow: 1px 0 5px rgba(0,0,0,0.02); }
         .submenu-title { font-size: 16px; font-weight: 600; color: var(--bg-sidebar); padding: 0 20px 15px 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
         .sub-item { padding: 10px 20px; color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
         .sub-item:hover { color: var(--primary-blue); background-color: #f0f4ff; }
         .sub-item.active { color: var(--primary-blue); font-weight: 600; border-right: 3px solid var(--primary-blue); }
-        .sub-section-title { font-size: 14px; font-weight: 600; color: var(--bg-sidebar); margin: 15px 20px 5px 20px; padding-top: 15px; border-top: 1px solid var(--border-color); }
+        .sub-section-title { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 15px 20px 5px 20px; padding-top: 15px; border-top: 1px solid var(--border-color); }
 
         /* ================= Content Area ================= */
         .main-content { flex: 1; display: flex; flex-direction: column; height: 100%; overflow: hidden; position: relative; }
         .header { background-color: var(--white); padding: 20px 30px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
-        .header h1 { font-size: 22px; color: var(--bg-sidebar); }
+        .header h1 { font-size: 22px; color: var(--bg-sidebar); font-weight: 600; }
         
-        .toolbar { display: flex; gap: 10px; padding: 15px 30px; background-color: var(--white); border-bottom: 1px solid var(--border-color); align-items: center; flex-wrap: wrap;}
-        .btn { padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; border: 1px solid transparent; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+        .toolbar { display: flex; gap: 15px; padding: 15px 30px; background-color: var(--white); border-bottom: 1px solid var(--border-color); align-items: center; flex-wrap: wrap; }
+        .toolbar-group { display: flex; gap: 8px; align-items: center; padding-right: 15px; border-right: 1px solid var(--border-color); }
+        .toolbar-group:last-child { border-right: none; padding-right: 0; }
+        .toolbar-spacer { flex: 1; }
+
+        .btn { padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid transparent; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
         .btn-primary { background-color: var(--primary-blue); color: var(--white); }
-        .btn-primary:hover { background-color: var(--primary-hover); }
+        .btn-primary:hover { background-color: var(--primary-hover); box-shadow: 0 2px 4px rgba(59,122,245,0.2); }
         .btn-success { background-color: var(--success-color); color: var(--white); }
-        .btn-success:hover { background-color: #1b5e20; }
+        .btn-success:hover { background-color: #15803d; box-shadow: 0 2px 4px rgba(22,163,74,0.2); }
         .btn-outline { background-color: transparent; border-color: var(--border-color); color: var(--text-dark); }
-        .btn-outline:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
-        .btn-icon { background: none; border: none; color: var(--primary-blue); cursor: pointer; padding: 4px; font-size: 16px; transition: color 0.2s; }
-        .btn-icon:hover { color: var(--primary-hover); }
+        .btn-outline:hover { border-color: var(--primary-blue); color: var(--primary-blue); background-color: #f8fafc; }
+        .btn-icon { background: none; border: none; color: var(--primary-blue); cursor: pointer; padding: 6px; font-size: 16px; border-radius: 4px; transition: all 0.2s; }
+        .btn-icon:hover { color: var(--primary-hover); background-color: #eff6ff; }
         
         .content-scroll { padding: 30px; overflow-y: auto; flex: 1; }
         
-        /* ================= Grid / Table ================= */
-        .table-container { background: var(--white); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid var(--border-color); overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; min-width: 1200px; } /* Grid alargada */
+        /* ================= Grid / Table UX Otimizada ================= */
+        .table-container { background: var(--white); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid var(--border-color); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; min-width: 1200px; } 
         th, td { padding: 12px 16px; text-align: left; font-size: 13px; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
-        th { background-color: #f8fafc; font-weight: 600; color: var(--text-muted); }
+        th { background-color: #f8fafc; font-weight: 600; color: #475569; position: sticky; top: 0; z-index: 1; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
         tr:last-child td { border-bottom: none; }
-        tr:hover { background-color: #f0f4ff; }
+        tr:nth-child(even) td { background-color: #f8fafc; } 
+        tr:hover td { background-color: #eff6ff; }
         .text-right { text-align: right; }
         .text-center { text-align: center; }
-        .badge { padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
-        .badge-manual { background-color: #e2e8f0; color: #475569; }
-        .badge-import { background-color: #dbeafe; color: #1e40af; }
-        input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--primary-blue); }
+        .badge { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; display: inline-block; }
+        .badge-manual { background-color: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+        .badge-import { background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+        input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--primary-blue); border-radius: 4px; }
         
         /* ================= Modais ================= */
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; }
-        .modal { background: var(--white); border-radius: 8px; width: 100%; max-width: 500px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; max-height: 90vh; }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 39, 87, 0.6); backdrop-filter: blur(2px); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal { background: var(--white); border-radius: 8px; width: 100%; max-width: 540px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); display: flex; flex-direction: column; max-height: 90vh; }
         .modal-lg { max-width: 800px; }
-        .modal-header { padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
-        .modal-header h2 { font-size: 18px; color: var(--bg-sidebar); display: flex; align-items: center; gap: 10px;}
-        .btn-close { background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; }
-        .modal-body { padding: 20px; overflow-y: auto; }
-        .modal-footer { padding: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 10px; }
+        .modal-header { padding: 20px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background-color: #fcfcfc; border-radius: 8px 8px 0 0; }
+        .modal-header h2 { font-size: 18px; color: var(--bg-sidebar); display: flex; align-items: center; gap: 10px; margin: 0; font-weight: 600;}
+        .btn-close { background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
+        .btn-close:hover { color: var(--danger-color); }
+        .modal-body { padding: 24px; overflow-y: auto; }
+        .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 12px; background-color: #fcfcfc; border-radius: 0 0 8px 8px; }
         
-        /* Formulários (Layout Grid para Imagem 2) */
-        .param-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 20px; }
-        .form-group { margin-bottom: 0; position: relative; display: flex; flex-direction: column;}
-        .form-row { display: flex; gap: 15px; margin-bottom: 15px;}
-        .form-row .form-group { flex: 1; }
-        label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--text-dark); }
-        .tooltip-icon { color: var(--primary-blue); cursor: help; margin-left: 4px; font-size: 12px; }
-        input, select { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 14px; transition: border-color 0.2s; text-overflow: ellipsis; }
-        input:focus, select:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 2px rgba(59,122,245,0.2); }
-        .warning-box { background-color: var(--warning-bg); border: 1px solid var(--warning-border); padding: 12px; border-radius: 6px; font-size: 13px; color: #7d6608; margin-bottom: 20px; display: flex; gap: 10px; }
-        .param-full-width { grid-column: 1 / -1; }
+        /* Sistema de Grid para Formulários */
+        .form-grid-1 { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 15px; }
+        .form-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px 20px; margin-bottom: 15px; }
+        .form-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px 20px; margin-bottom: 15px; }
         
-        /* Modais de Feedback */
-        .modal-error-content { text-align: center; padding: 40px 20px; }
-        .error-icon-wrapper { width: 80px; height: 80px; border: 2px solid var(--danger-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; color: var(--danger-color); font-size: 40px; }
-        .modal-error-content h3 { font-size: 24px; margin-bottom: 15px; color: #000; }
-        .modal-error-content p { color: var(--text-muted); line-height: 1.5; margin-bottom: 30px; }
-        .btn-block { width: 100%; justify-content: center; margin-bottom: 10px; padding: 12px; font-size: 15px; }
-        .success-icon-wrapper { width: 80px; height: 80px; border: 2px solid var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; color: var(--primary-blue); font-size: 40px; }
+        .section-divider { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+        .section-divider:first-child { margin-top: 0; }
+        
+        .form-group { position: relative; display: flex; flex-direction: column; }
+        label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #1e293b; }
+        .tooltip-icon { color: var(--primary-blue); cursor: help; margin-left: 4px; font-size: 12px; opacity: 0.8; }
+        .tooltip-icon:hover { opacity: 1; }
+        
+        input, select { width: 100%; padding: 9px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; color: var(--text-dark); transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+        input:focus, select:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 3px rgba(59,122,245,0.15); }
+        input.calc-result { background-color: var(--input-bg-readonly); font-weight: 600; color: var(--bg-sidebar); border-color: #cbd5e1; }
+        
+        .warning-box { background-color: var(--warning-bg); border: 1px solid var(--warning-border); padding: 12px 16px; border-radius: 6px; font-size: 13px; color: #92400e; margin-bottom: 20px; display: flex; gap: 12px; align-items: flex-start; line-height: 1.4; }
+        
+        /* Modais de Feedback - CORRIGIDO CONFORME SUA IMAGEM */
+        .modal-error-content { text-align: center; padding: 30px 20px; }
+        .error-icon-wrapper { 
+            width: 80px; 
+            height: 80px; 
+            border: 2px solid var(--danger-color); /* Borda fina vermelha */
+            background-color: transparent; /* Fundo transparente/branco */
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 0 auto 20px auto; 
+            color: var(--danger-color); 
+            font-size: 40px; 
+        }
+        .modal-error-content h3 { font-size: 22px; margin-bottom: 12px; color: #0f172a; }
+        .modal-error-content p { color: #64748b; line-height: 1.5; margin-bottom: 24px; font-size: 14px; }
+        .btn-block { width: 100%; justify-content: center; margin-bottom: 10px; padding: 10px; font-size: 14px; }
+        
+        .success-icon-wrapper { width: 80px; height: 80px; border: 2px solid var(--primary-blue); background-color: transparent; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; color: var(--primary-blue); font-size: 40px; }
         
         /* Area de Upload */
-        .upload-area { border: 2px dashed var(--border-color); border-radius: 6px; padding: 20px; text-align: center; cursor: pointer; color: var(--text-muted); font-size: 14px; margin-bottom: 15px; }
-        .upload-area:hover { border-color: var(--primary-blue); background-color: #f8fafc; }
+        .upload-area { border: 2px dashed #cbd5e1; background-color: #f8fafc; border-radius: 8px; padding: 30px 20px; text-align: center; cursor: pointer; color: #64748b; font-size: 14px; margin-bottom: 15px; transition: all 0.2s; }
+        .upload-area:hover { border-color: var(--primary-blue); background-color: #eff6ff; color: var(--primary-blue); }
+        .upload-area i { font-size: 28px; margin-bottom: 12px; color: #94a3b8; }
+        .upload-area:hover i { color: var(--primary-blue); }
         
         .hidden { display: none !important; }
         
         /* ================= Conciliação Clássica ================= */
-        .classic-view { background-color: #f0f0f0; display: flex; flex-direction: column; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 12px; color: #000; }
-        .classic-top-bar { display: flex; background: #e4e4e4; border-bottom: 1px solid #a0a0a0; padding: 10px 15px; gap: 40px; }
+        .classic-view { background-color: #f1f5f9; display: flex; flex-direction: column; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 12px; color: #334155; }
+        .classic-top-bar { display: flex; background: #e2e8f0; border-bottom: 1px solid #cbd5e1; padding: 12px 20px; gap: 40px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); z-index: 2;}
         .classic-summary-box { flex: 1; display: flex; flex-direction: column; }
         .classic-summary-row { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px; }
         .classic-panel-container { display: flex; flex-direction: column; flex: 1; overflow: hidden; background: #fff;}
-        .classic-split-row { display: flex; flex: 1; min-height: 150px; border-bottom: 4px solid #d4d4d4; }
-        .classic-panel { flex: 1; display: flex; flex-direction: column; border-right: 4px solid #d4d4d4; }
+        .classic-split-row { display: flex; flex: 1; min-height: 150px; border-bottom: 4px solid #cbd5e1; }
+        .classic-panel { flex: 1; display: flex; flex-direction: column; border-right: 4px solid #cbd5e1; }
         .classic-panel:last-child { border-right: none; }
-        .classic-panel-header { background: #2f6a9e; color: white; padding: 6px 10px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1c4a73; font-size: 13px; }
+        .classic-panel-header { background: #334155; color: white; padding: 8px 12px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; font-size: 13px; }
         .classic-table-wrapper { flex: 1; overflow-y: auto; }
         .classic-table { width: 100%; border-collapse: collapse; min-width: 100%; }
-        .classic-table th { background: #f0f0f0; border-right: 1px solid #c0c0c0; border-bottom: 1px solid #c0c0c0; padding: 4px 6px; font-weight: normal; text-align: left; position: sticky; top: 0; font-size: 11px;}
-        .classic-table td { border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; padding: 4px 6px; white-space: nowrap; font-size: 11px;}
-        .classic-table tr:nth-child(even) { background: #fafafa; }
-        .classic-toolbar { background: #f0f0f0; padding: 6px; display: flex; justify-content: flex-end; gap: 5px; border-top: 1px solid #c0c0c0; border-bottom: 1px solid #c0c0c0;}
-        .classic-btn { background: #e0e0e0; border: 1px solid #a0a0a0; padding: 4px 15px; border-radius: 2px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 12px; color:#333; }
-        .classic-btn:hover { background: #d0d0d0; }
-        .val-d { color: #cc0000; }
-        .val-c { color: #0000cc; }
-        .table-split-border { border-right: 2px solid #b5b5b5 !important; }
-        .badge-outline-blue { border: 1px solid #93c5fd; color: #1e40af; background: #eff6ff; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; display: inline-block; box-shadow: 0 1px 1px rgba(0,0,0,0.05); }
-        .badge-outline-purple { border: 1px solid #d8b4fe; color: #6b21a8; background: #faf5ff; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; display: inline-block; box-shadow: 0 1px 1px rgba(0,0,0,0.05); }
-        .pagination-arrows { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: normal; }
-        .pagination-arrows button { background: none; border: 1px solid #ccc; border-radius: 4px; padding: 2px 8px; cursor: pointer; }
-        .pagination-arrows button:hover { background: #f0f0f0; }
+        .classic-table th { background: #f8fafc; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #cbd5e1; padding: 6px 8px; font-weight: 600; text-align: left; position: sticky; top: 0; font-size: 11px; color: #475569;}
+        .classic-table td { border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 6px 8px; white-space: nowrap; font-size: 11px;}
+        .classic-table tr:nth-child(even) td { background: #f8fafc; }
+        .classic-table tr:hover td { background-color: #eff6ff; }
+        .classic-toolbar { background: #f1f5f9; padding: 8px 12px; display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid #cbd5e1; border-bottom: 1px solid #cbd5e1;}
+        .classic-btn { background: #ffffff; border: 1px solid #cbd5e1; padding: 6px 16px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 12px; color:#334155; font-weight: 500; transition: all 0.1s; box-shadow: 0 1px 1px rgba(0,0,0,0.02);}
+        .classic-btn:hover { background: #f8fafc; border-color: #94a3b8; }
+        .classic-btn:active { background: #e2e8f0; }
+        .val-d { color: #dc2626; font-weight: 500;}
+        .val-c { color: #2563eb; font-weight: 500;}
+        .table-split-border { border-right: 2px solid #94a3b8 !important; }
+        
+        .badge-outline-blue { border: 1px solid #bfdbfe; color: #1e40af; background: #eff6ff; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; display: inline-block; }
+        .badge-outline-purple { border: 1px solid #e9d5ff; color: #6b21a8; background: #faf5ff; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; display: inline-block; }
+        .pagination-arrows { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: normal; color: #64748b; background: #f1f5f9; padding: 4px 10px; border-radius: 16px; }
+        .pagination-arrows button { background: var(--white); border: 1px solid #cbd5e1; border-radius: 4px; padding: 2px 6px; cursor: pointer; color: #475569; transition: background 0.2s;}
+        .pagination-arrows button:hover { background: #e2e8f0; color: #0f172a; }
     </style>
 </head>
 <body>
@@ -157,7 +190,7 @@
         <a href="#" class="sub-item">Emitir NFs-e</a>
         <a href="#" class="sub-item">Importar notas fiscais</a>
         
-        <div class="sub-section-title" style="margin-top:20px; border-top:none;">Movimentações</div>
+        <div class="sub-section-title">Movimentações</div>
         <a href="#" class="sub-item">Importar extrato bancário</a>
         <a href="#" class="sub-item">Fazer lançamentos caixa</a>
         <a href="#" class="sub-item active">Aplicações Financeiras</a>
@@ -170,17 +203,26 @@
             </header>
             
             <div class="toolbar">
-                <button class="btn btn-primary" onclick="openModal('modal-manual')"><i class="fa-solid fa-plus"></i> Novo</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-pen"></i> Editar</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-magnifying-glass"></i> Consultar</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-list-ul"></i> Listar</button>
+                <div class="toolbar-group">
+                    <button class="btn btn-primary" onclick="openModal('modal-manual')"><i class="fa-solid fa-plus"></i> Novo</button>
+                    <button class="btn btn-outline"><i class="fa-solid fa-pen"></i> Editar</button>
+                </div>
                 
-                <button class="btn btn-success" onclick="contabilizarEmMassa()"><i class="fa-solid fa-calculator"></i> Contabilizar Selecionados</button>
+                <div class="toolbar-group">
+                    <button class="btn btn-outline"><i class="fa-solid fa-magnifying-glass"></i> Consultar</button>
+                    <button class="btn btn-outline"><i class="fa-solid fa-list-ul"></i> Listar</button>
+                </div>
                 
-                <div style="flex:1;"></div>
+                <div class="toolbar-group" style="border-right: none;">
+                    <button class="btn btn-success" onclick="contabilizarEmMassa()"><i class="fa-solid fa-calculator"></i> Contabilizar Selecionados</button>
+                </div>
                 
-                <button class="btn btn-primary" onclick="openModal('modal-import')"><i class="fa-solid fa-cloud-arrow-up"></i> Importar</button>
-                <button class="btn btn-outline" onclick="openModal('modal-param')"><i class="fa-solid fa-gear"></i> Parametrização das Contas</button>
+                <div class="toolbar-spacer"></div>
+                
+                <div class="toolbar-group" style="border-right: none;">
+                    <button class="btn btn-primary" onclick="openModal('modal-import')"><i class="fa-solid fa-cloud-arrow-up"></i> Importar</button>
+                    <button class="btn btn-outline" onclick="openModal('modal-param')"><i class="fa-solid fa-gear"></i> Parametrização das Contas</button>
+                </div>
             </div>
 
             <div class="content-scroll">
@@ -188,13 +230,14 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 40px;"><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)"></th>
+                                <th class="text-center" style="width: 40px; padding-left: 20px;"><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)"></th>
                                 <th>Data</th>
                                 <th>Banco</th>
                                 <th>Aplicação</th>
                                 <th>Tipo de Operação</th>
                                 <th class="text-right">Capital</th>
                                 <th class="text-right">Juros</th>
+                                <th class="text-right">Taxas</th>
                                 <th class="text-right">IR</th>
                                 <th class="text-right">IOF</th>
                                 <th class="text-right">Total Líquido</th>
@@ -204,19 +247,20 @@
                         </thead>
                         <tbody id="grid-body">
                             <tr>
-                                <td class="text-center"><input type="checkbox" class="row-checkbox"></td>
+                                <td class="text-center" style="padding-left: 20px;"><input type="checkbox" class="row-checkbox"></td>
                                 <td>15/12/2025</td>
                                 <td>Banco do Brasil</td>
                                 <td>BB Rende Fácil</td>
                                 <td>Resgate</td>
                                 <td class="text-right">R$ 5.000,00</td>
                                 <td class="text-right">R$ 150,00</td>
+                                <td class="text-right">R$ 0,00</td>
                                 <td class="text-right">R$ 33,75</td>
                                 <td class="text-right">R$ 0,00</td>
-                                <td class="text-right" style="font-weight:600;">R$ 5.116,25</td>
-                                <td><span class="badge badge-import">Importação Aplicações</span></td>
+                                <td class="text-right" style="font-weight:600; color: var(--bg-sidebar);">R$ 5.116,25</td>
+                                <td><span class="badge badge-import">Imp. Aplicações</span></td>
                                 <td class="text-center">
-                                    <button class="btn-icon" title="Gerar lançamentos Contábeis" onclick="contabilizarLinha()"><i class="fa-solid fa-calculator"></i></button>
+                                    <button class="btn-icon" title="Gerar Lançamentos Contábeis" onclick="contabilizarLinha()"><i class="fa-solid fa-calculator"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -226,9 +270,9 @@
         </div>
 
         <div id="view-conciliacao" class="view-section hidden classic-view">
-            <div style="background: #e4e4e4; padding: 5px; display: flex; gap: 10px;">
-                <button class="classic-btn" style="display: inline-flex;" onclick="switchView('view-grid')"><i class="fa-solid fa-arrow-left"></i> Voltar para Grid</button>
-                <button class="classic-btn" style="display: inline-flex; color: #1e40af; font-weight: bold; border-color: #93c5fd; background: #e0f2fe;" onclick="openModal('modal-import')"><i class="fa-solid fa-cloud-arrow-up"></i> Importar Aplicações</button>
+            <div style="background: #cbd5e1; padding: 6px 12px; display: flex; gap: 10px;">
+                <button class="classic-btn" onclick="switchView('view-grid')"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+                <button class="classic-btn" style="color: #1d4ed8; font-weight: 600; border-color: #93c5fd; background: #eff6ff;" onclick="openModal('modal-import')"><i class="fa-solid fa-cloud-arrow-up"></i> Importar Aplicações</button>
             </div>
             
             <div class="classic-top-bar">
@@ -242,7 +286,7 @@
                     <div class="classic-summary-row" style="width: 150px;"><span>Débitos:</span> <span>0,00</span></div>
                     <div class="classic-summary-row" style="width: 150px;"><span>Créditos:</span> <span>4.790,08</span></div>
                 </div>
-                <div class="classic-summary-box" style="border-left: 1px solid #a0a0a0; padding-left: 20px;">
+                <div class="classic-summary-box" style="border-left: 1px solid #94a3b8; padding-left: 20px;">
                     <div style="font-weight: bold; font-size: 14px; margin-bottom: 10px;">Resumo do Extrato Bancário (01/03/2026 a 31/03/2026)</div>
                     <div class="classic-summary-row"><span>Saldo Inicial:</span> <span>0,00</span></div>
                     <div class="classic-summary-row"><span>Saldo Final:</span> <span>0,00</span></div>
@@ -258,7 +302,7 @@
                     <div class="classic-panel">
                         <div class="classic-panel-header">
                             <span><i class="fa-solid fa-list"></i> Lanç. não Conciliados do Sistema</span>
-                            <span style="font-weight: normal;">Nenhum selecionado</span>
+                            <span style="font-weight: normal; font-size:11px;">Nenhum selecionado</span>
                         </div>
                         <div class="classic-table-wrapper">
                             <table class="classic-table" id="table-sistema">
@@ -273,17 +317,16 @@
                                         <th style="text-align: right;">Valor</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
-                        <div style="text-align: right; padding: 4px 10px; font-weight: bold; background: #f0f0f0; font-size: 11px;">Total: 0,00</div>
+                        <div style="text-align: right; padding: 6px 12px; font-weight: bold; background: #f8fafc; font-size: 12px; border-top: 1px solid #e2e8f0;">Total: 0,00</div>
                     </div>
                     
                     <div class="classic-panel">
                         <div class="classic-panel-header">
                             <span><i class="fa-solid fa-file-invoice"></i> Lanç. não Conciliados do Extrato</span>
-                            <span style="font-weight: normal;">Nenhum selecionado</span>
+                            <span style="font-weight: normal; font-size:11px;">Nenhum selecionado</span>
                         </div>
                         <div class="classic-table-wrapper">
                             <table class="classic-table" id="table-extrato">
@@ -297,17 +340,16 @@
                                         <th style="text-align: right;">Valor</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
-                        <div style="text-align: right; padding: 4px 10px; font-weight: bold; background: #f0f0f0; font-size: 11px;">Total: 0,00</div>
+                        <div style="text-align: right; padding: 6px 12px; font-weight: bold; background: #f8fafc; font-size: 12px; border-top: 1px solid #e2e8f0;">Total: 0,00</div>
                     </div>
                 </div>
 
                 <div class="classic-toolbar">
                     <button class="classic-btn"><i class="fa-solid fa-link"></i> Mapear...</button>
-                    <button class="classic-btn" style="color: #2e7d32; font-weight: bold;" onclick="alert('Conciliação efetuada com sucesso!')"><i class="fa-solid fa-check"></i> Conciliar Marcados</button>
+                    <button class="classic-btn" style="color: #166534; font-weight: 600; border-color: #bbf7d0; background: #f0fdf4;" onclick="alert('Conciliação efetuada com sucesso!')"><i class="fa-solid fa-check"></i> Conciliar Marcados</button>
                 </div>
 
                 <div class="classic-split-row" style="min-height: 200px; border-bottom: none;">
@@ -325,14 +367,14 @@
                                         <th>Histórico</th>
                                         <th>Origem</th>
                                         <th style="text-align: right;" class="table-split-border">Valor</th>
-                                        <th style="padding-left:10px;">Data</th>
+                                        <th style="padding-left:12px;">Data</th>
                                         <th>Histórico</th>
                                         <th>Origem</th>
                                         <th style="text-align: right;">Valor</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td colspan="10" style="text-align: center; color: #999;">Nenhum lançamento conciliado</td></tr>
+                                    <tr><td colspan="10" style="text-align: center; color: #94a3b8; padding: 20px;">Nenhum lançamento conciliado</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -340,7 +382,7 @@
                 </div>
             </div>
             
-            <div class="classic-toolbar" style="background: #e4e4e4; border-top: 1px solid #a0a0a0;">
+            <div class="classic-toolbar" style="background: #e2e8f0; border-top: 1px solid #94a3b8;">
                 <button class="classic-btn"><i class="fa-solid fa-reply"></i> Desfazer Conciliação</button>
                 <button class="classic-btn" onclick="switchView('view-grid')"><i class="fa-solid fa-door-open"></i> Sair</button>
             </div>
@@ -350,9 +392,9 @@
     <div class="modal-overlay" id="modal-param">
         <div class="modal modal-lg">
             <div class="modal-header">
-                <h2>Parametrização de contas para Aplicações Financeiras
+                <h2>Parametrização de Contas
                     <div class="pagination-arrows hidden" id="param-pagination">
-                        (Ativo 1 de 3)
+                        Ativo 1 de 3
                         <button><i class="fa-solid fa-chevron-left"></i></button>
                         <button><i class="fa-solid fa-chevron-right"></i></button>
                     </div>
@@ -360,14 +402,15 @@
                 <button class="btn-close" onclick="closeModal('modal-param')"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <div class="param-grid">
-                    
+                
+                <div class="section-divider"><i class="fa-solid fa-tag"></i> 1. Identificação do Ativo</div>
+                <div class="form-grid-2">
                     <div class="form-group">
                         <label>Identificador do Ativo <i class="fa-solid fa-circle-question tooltip-icon" title="Informe o nome exato que consta no extrato. Ex: BB Rende Fácil"></i></label>
-                        <input type="text" id="param-ativo" placeholder="Itaú CDB DI Super">
+                        <input type="text" id="param-ativo" placeholder="Ex: Itaú CDB DI Super">
                     </div>
                     <div class="form-group">
-                        <label>Classificação <i class="fa-solid fa-circle-question tooltip-icon" title="Selecione a categoria fiscal do investimento para que o sistema aplique as regras corretas de tributação."></i></label>
+                        <label>Classificação Fiscal <i class="fa-solid fa-circle-question tooltip-icon" title="Selecione a categoria fiscal para que o sistema aplique as regras corretas de tributação."></i></label>
                         <select id="param-classificacao" onchange="sugerirContas()">
                             <option value="">Selecione a classificação...</option>
                             <option value="renda_fixa">Renda Fixa Padrão (CDB, RDB, LC)</option>
@@ -375,7 +418,6 @@
                             <option value="fundo_lp">Fundo de Investimento - Longo Prazo</option>
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label>Banco / Instituição</label>
                         <select>
@@ -385,15 +427,10 @@
                             <option value="1.01.01.02.01.0003">1.01.01.02.01.0003-1 - Itaú</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Juros <i class="fa-solid fa-circle-question tooltip-icon" title="Conta de Resultado que registrará os juros ganhos"></i></label>
-                        <select id="param-rendimentos">
-                            <option value="">Selecione a conta...</option>
-                            <option value="3.01.01.05.01.0006-6">3.01.01.05.01.0006-6 - Juros e Desc Recebidos</option>
-                            <option value="3.01.01.05.01.0007-4">3.01.01.05.01.0007-4 - Rendimentos Aplicações</option>
-                        </select>
-                    </div>
+                </div>
 
+                <div class="section-divider"><i class="fa-solid fa-arrow-turn-up" style="color:var(--success-color);"></i> 2. Contas de Aplicação (Entradas)</div>
+                <div class="form-grid-2">
                     <div class="form-group">
                         <label>Capital (Ativo) <i class="fa-solid fa-circle-question tooltip-icon" title="Conta do Ativo onde o valor base do investimento ficará registrado"></i></label>
                         <select id="param-capital">
@@ -403,38 +440,60 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>IOF (Despesa) <i class="fa-solid fa-circle-question tooltip-icon" title="Conta para registrar a despesa com o IOF"></i></label>
-                        <select id="param-iof">
+                        <label>Rendimentos (Resultado) <i class="fa-solid fa-circle-question tooltip-icon" title="Conta de Resultado que registrará os juros ganhos"></i></label>
+                        <select id="param-rendimentos">
                             <option value="">Selecione a conta...</option>
-                            <option value="3.01.01.09.01.0009-1">3.01.01.09.01.0009-1 - IOF</option>
+                            <option value="3.01.01.05.01.0006-6">3.01.01.05.01.0006-6 - Juros e Desc Recebidos</option>
+                            <option value="3.01.01.05.01.0007-4">3.01.01.05.01.0007-4 - Rendimentos Aplicações</option>
                         </select>
                     </div>
+                </div>
 
+                <div class="section-divider"><i class="fa-solid fa-arrow-turn-down" style="color:var(--danger-color);"></i> 3. Contas de Impostos e Taxas (Deduções)</div>
+                <div class="form-grid-3">
                     <div class="form-group">
-                        <label>IRRF <i class="fa-solid fa-circle-question tooltip-icon" title="Conta para o imposto de renda retido"></i></label>
+                        <label>Taxas Bancárias <i class="fa-solid fa-circle-question tooltip-icon" title="Conta de Despesa que registrará os custos bancários e taxas da operação."></i></label>
+                        <select id="param-taxas">
+                            <option value="">Selecione a conta...</option>
+                            <option value="3.01.01.09.01.0001">3.01.01.09.01.0001 - Despesas Bancárias</option>
+                            <option value="3.01.01.09.01.0002">3.01.01.09.01.0002 - Taxas de Administração</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>IRRF Retido <i class="fa-solid fa-circle-question tooltip-icon" title="Conta para o imposto de renda retido"></i></label>
                         <select id="param-irrf">
                             <option value="">Selecione a conta...</option>
                             <option value="1.01.05.01.05.0003-2">1.01.05.01.05.0003-2 - IRRF a Recuperar</option>
                             <option value="2.01.01.03.03.0008-1">2.01.01.03.03.0008-1 - IRRF a Recolher</option>
                         </select>
                     </div>
-                    <div></div> <div class="form-group">
-                        <label>Histórico</label>
+                    <div class="form-group">
+                        <label>IOF (Despesa) <i class="fa-solid fa-circle-question tooltip-icon" title="Conta para registrar a despesa com o IOF"></i></label>
+                        <select id="param-iof">
+                            <option value="">Selecione a conta...</option>
+                            <option value="3.01.01.09.01.0009-1">3.01.01.09.01.0009-1 - IOF</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-divider"><i class="fa-solid fa-align-left"></i> 4. Dados Complementares</div>
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label>Histórico Padrão</label>
                         <select>
                             <option>Resgate de Aplicação Financeira</option>
                             <option>Rendimento s/ Aplicação</option>
                         </select>
                     </div>
-                    <div></div> <div class="form-group param-full-width">
+                    <div class="form-group">
                         <label>Complemento do Histórico</label>
                         <input type="text" placeholder="Opcional">
                     </div>
-
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" onclick="salvarParametrizacao(false)">Cancelar</button>
-                <button class="btn btn-primary" onclick="salvarParametrizacao(true)">Salvar Parametrização</button>
+                <button class="btn btn-primary" onclick="salvarParametrizacao(true)">Salvar</button>
             </div>
         </div>
     </div>
@@ -442,31 +501,28 @@
     <div class="modal-overlay" id="modal-import">
         <div class="modal">
             <div class="modal-header">
-                <h2>Enviar novo documento</h2>
+                <h2>Enviar Extrato em PDF</h2>
                 <button class="btn-close" onclick="closeModal('modal-import')"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label>Tipo de documento</label>
-                    <select disabled><option>Extrato de aplicação financeira (PDF)</option></select>
-                </div>
-                
                 <div class="warning-box">
-                    <i class="fa-solid fa-circle-exclamation" style="margin-top:2px;"></i>
-                    <span>O sistema usará dicionário inteligente para extrair chaves e a fórmula matemática <strong>(Capital + Juros - IR - IOF = Total)</strong> para validação.</span>
+                    <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 18px; margin-top:2px; color: #d97706;"></i>
+                    <span>O sistema usará dicionário inteligente para extrair chaves e a fórmula matemática <strong>(Capital + Juros - Taxas - IR - IOF = Total)</strong> para garantir conformidade antes de importar.</span>
                 </div>
 
                 <div class="upload-area">
-                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 24px; margin-bottom: 10px;"></i><br>
-                    Arraste aqui ou clique para fazer o upload.<br>Tamanho máximo: 30 MB
+                    <i class="fa-solid fa-file-pdf"></i><br>
+                    <strong>Arraste o extrato bancário aqui</strong><br>
+                    ou clique para procurar no computador.<br>
+                    <span style="font-size: 12px; color:#94a3b8; margin-top: 8px; display: block;">Tamanho máximo: 30 MB</span>
                 </div>
 
-                <p style="text-align: center; font-size:12px; margin-bottom: 10px; font-weight:bold;">Simuladores de Comportamento (US 02)</p>
-                <div style="display: flex; gap: 5px; flex-wrap: wrap; justify-content: center;">
-                    <button class="btn btn-outline" style="border-color: var(--success-color); color: var(--success-color); font-size: 11px;" onclick="simularImportacao('resgate')">Com Saída (Resgate)</button>
-                    <button class="btn btn-outline" style="border-color: #f59e0b; color: #b45309; font-size: 11px;" onclick="simularImportacao('rendimento')">Só Rendimento</button>
-                    <button class="btn btn-outline" style="border-color: #3b82f6; color: #1d4ed8; font-size: 11px;" onclick="simularImportacao('desconhecido')">Ativo Desconhecido</button>
-                    <button class="btn btn-outline" style="border-color: var(--danger-color); color: var(--danger-color); font-size: 11px;" onclick="simularImportacao('erro')">Falha Leitura</button>
+                <p style="text-align: center; font-size:11px; margin: 20px 0 10px 0; font-weight:700; text-transform: uppercase; letter-spacing: 0.5px; color:#94a3b8;">Simuladores de Comportamento</p>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;">
+                    <button class="btn btn-outline" style="border-color: var(--success-color); color: var(--success-color); font-size: 12px;" onclick="simularImportacao('resgate')">Simular Resgate</button>
+                    <button class="btn btn-outline" style="border-color: #f59e0b; color: #d97706; font-size: 12px;" onclick="simularImportacao('rendimento')">Simular Rendimento</button>
+                    <button class="btn btn-outline" style="border-color: #3b82f6; color: #2563eb; font-size: 12px;" onclick="simularImportacao('desconhecido')">Novo Ativo</button>
+                    <button class="btn btn-outline" style="border-color: var(--danger-color); color: var(--danger-color); font-size: 12px;" onclick="simularImportacao('erro')">Falha PDF</button>
                 </div>
             </div>
         </div>
@@ -478,11 +534,11 @@
                 <div class="error-icon-wrapper">
                     <i class="fa-solid fa-xmark"></i>
                 </div>
-                <h3>Falha na importação</h3>
-                <p>⚠️ Não foi possível extrair os dados automaticamente. Preencha as informações manualmente.</p>
+                <h3>Falha na Extração</h3>
+                <p>O arquivo enviado é incompatível ou ilegível. Não foi possível realizar a validação matemática.</p>
                 
-                <button class="btn btn-primary btn-block" onclick="abrirPreenchimentoManual()">Preencher informações</button>
-                <button class="btn btn-outline btn-block" onclick="closeModal('modal-import-error')">Voltar</button>
+                <button class="btn btn-primary btn-block" onclick="abrirPreenchimentoManual()">Preencher manualmente</button>
+                <button class="btn btn-outline btn-block" onclick="closeModal('modal-import-error')">Cancelar</button>
             </div>
         </div>
     </div>
@@ -494,7 +550,8 @@
                 <button class="btn-close" onclick="closeModal('modal-manual')"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <div class="form-row">
+                
+                <div class="form-grid-2">
                     <div class="form-group"><label>Data</label><input type="date" id="man-data" value="2026-03-09"></div>
                     <div class="form-group">
                         <label>Tipo de Operação</label>
@@ -506,22 +563,31 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-row">
+                
+                <div class="form-grid-2">
                     <div class="form-group"><label>Capital (R$)</label><input type="number" id="man-capital" value="4790.01" step="0.01" onkeyup="calcLiquid()"></div>
                     <div class="form-group"><label>Juros (R$)</label><input type="number" id="man-juros" value="0.52" step="0.01" onkeyup="calcLiquid()"></div>
                 </div>
-                <div class="form-row">
+                
+                <div class="form-grid-3">
+                    <div class="form-group"><label>Taxas (R$)</label><input type="number" id="man-taxas" value="0.00" step="0.01" onkeyup="calcLiquid()"></div>
                     <div class="form-group"><label>IR (R$)</label><input type="number" id="man-ir" value="0.01" step="0.01" onkeyup="calcLiquid()"></div>
                     <div class="form-group"><label>IOF (R$)</label><input type="number" id="man-iof" value="0.44" step="0.01" onkeyup="calcLiquid()"></div>
                 </div>
-                <div class="form-group">
-                    <label>Total Líquido (R$)</label>
-                    <input type="number" id="man-liquido" value="4790.08" step="0.01">
+                
+                <hr style="border: none; border-top: 1px solid var(--border-color); margin: 20px 0 15px 0;">
+                
+                <div class="form-grid-1">
+                    <div class="form-group">
+                        <label>Total Líquido (R$)</label>
+                        <input type="number" id="man-liquido" class="calc-result" value="4790.08" step="0.01" readonly>
+                    </div>
                 </div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" onclick="closeModal('modal-manual')">Cancelar</button>
-                <button class="btn btn-primary" onclick="salvarManual()">Salvar e Processar</button>
+                <button class="btn btn-primary" onclick="salvarManual()">Salvar</button>
             </div>
         </div>
     </div>
@@ -532,9 +598,9 @@
                 <div class="success-icon-wrapper">
                     <i class="fa-solid fa-check"></i>
                 </div>
-                <h3 style="font-size: 20px; color:#112d60;">Dados importados com sucesso!</h3>
-                <p style="margin-bottom: 20px;" id="msg-sucesso-texto">Existem valores de entrada/saída de caixa.</p>
-                <p style="font-weight: 600; margin-bottom: 30px;" id="msg-sucesso-pergunta">Deseja ir para a Conciliação Bancária agora?</p>
+                <h3 style="font-size: 20px; color:#0f172a;">Dados importados com sucesso!</h3>
+                <p style="margin-bottom: 20px; color: #475569;" id="msg-sucesso-texto">Existem valores de entrada/saída de caixa.</p>
+                <p style="font-weight: 600; margin-bottom: 30px; color: #1e293b;" id="msg-sucesso-pergunta">Deseja ir para a Conciliação Bancária agora?</p>
                 
                 <div id="btn-group-conciliar">
                     <button class="btn btn-primary btn-block" onclick="irParaConciliacao()">Sim, ir para Conciliação</button>
@@ -543,7 +609,7 @@
                 
                 <div id="btn-group-contabilizar" class="hidden">
                     <button class="btn btn-primary btn-block" onclick="contabilizar()">Sim, Contabilizar Automaticamente</button>
-                    <button class="btn btn-outline btn-block" onclick="closeModal('modal-success')">Não, voltar para tela inicial</button>
+                    <button class="btn btn-outline btn-block" onclick="closeModal('modal-success')">Não</button>
                 </div>
             </div>
         </div>
@@ -560,23 +626,23 @@
             document.getElementById(viewId).classList.remove('hidden');
         }
 
-        // R1.4.1 Sugestão Inteligente
         function sugerirContas() {
             const val = document.getElementById('param-classificacao').value;
             if(val !== "") {
                 document.getElementById('param-capital').value = "1.01.01.07.01";
                 document.getElementById('param-rendimentos').value = "3.01.01.05.01.0007-4";
+                document.getElementById('param-taxas').value = "3.01.01.09.01.0001";
                 document.getElementById('param-irrf').value = "1.01.05.01.05.0003-2"; 
                 document.getElementById('param-iof').value = "3.01.01.09.01.0009-1";
             } else {
                 document.getElementById('param-capital').value = "";
                 document.getElementById('param-rendimentos').value = "";
+                document.getElementById('param-taxas').value = "";
                 document.getElementById('param-irrf').value = ""; 
                 document.getElementById('param-iof').value = "";
             }
         }
 
-        // Funções da Grid Principal
         function toggleSelectAll(source) {
             const checkboxes = document.querySelectorAll('.row-checkbox');
             checkboxes.forEach(cb => cb.checked = source.checked);
@@ -585,7 +651,7 @@
         function contabilizarEmMassa() {
             const selecionados = document.querySelectorAll('.row-checkbox:checked').length;
             if(selecionados === 0) {
-                alert("Selecione ao menos uma movimentação na grid para contabilizar.");
+                alert("Selecione ao menos uma movimentação na grid marcando as caixas à esquerda.");
             } else {
                 alert(`${selecionados} movimentação(ões) contabilizada(s) e registrada(s) na contabilidade com sucesso!`);
             }
@@ -598,25 +664,24 @@
         function calcLiquid() {
             let cap = parseFloat(document.getElementById('man-capital').value) || 0;
             let jur = parseFloat(document.getElementById('man-juros').value) || 0;
+            let taxas = parseFloat(document.getElementById('man-taxas').value) || 0;
             let ir = parseFloat(document.getElementById('man-ir').value) || 0;
             let iof = parseFloat(document.getElementById('man-iof').value) || 0;
-            document.getElementById('man-liquido').value = (cap + jur - ir - iof).toFixed(2);
+            document.getElementById('man-liquido').value = (cap + jur - taxas - ir - iof).toFixed(2);
         }
 
         let dadosTemp = null; 
         let fluxoDesconhecido = false;
 
-        // Simulador de Ingestão (US 02)
         function simularImportacao(cenario) {
             closeModal('modal-import');
             
             if (cenario === 'erro') {
-                openModal('modal-import-error'); // R2.4
+                openModal('modal-import-error');
                 return;
             }
             
             if (cenario === 'desconhecido') {
-                // R2.6 Ativo não parametrizado
                 if(confirm("Encontramos novas aplicações no seu extrato que precisam de parametrização.")){
                     fluxoDesconhecido = true;
                     document.getElementById('param-ativo').value = "Itaú CDB DI Super";
@@ -628,16 +693,16 @@
 
             dadosTemp = { 
                 data: '09/03/2026', banco: 'Banco do Brasil', app: 'BB Rende Fácil', 
-                cap: 4790.01, jur: 0.52, ir: 0.01, iof: 0.44, origem: 'Imp. Aplicações', cssClass: 'badge-import' 
+                cap: 4790.01, jur: 0.52, taxas: 0.00, ir: 0.01, iof: 0.44, origem: 'Imp. Aplicações', cssClass: 'badge-import' 
             };
 
             if (cenario === 'resgate') {
                 dadosTemp.tipo = 'Resgate';
-                prepararModalSucesso(true); // R2.3.2
+                prepararModalSucesso(true);
             } else if (cenario === 'rendimento') {
                 dadosTemp.tipo = 'Rendimento Mensal';
-                dadosTemp.cap = 0; dadosTemp.jur = 150.00; dadosTemp.ir = 33.75; dadosTemp.iof = 0;
-                prepararModalSucesso(false); // R2.3.3
+                dadosTemp.cap = 0; dadosTemp.jur = 150.00; dadosTemp.taxas = 0; dadosTemp.ir = 33.75; dadosTemp.iof = 0;
+                prepararModalSucesso(false);
             }
 
             adicionarNaGrid(dadosTemp);
@@ -656,7 +721,7 @@
                 grpConciliar.classList.remove('hidden');
                 grpContabilizar.classList.add('hidden');
             } else {
-                txt.innerText = " ";
+                txt.innerText = "Operação de rendimento/tributação sem trânsito em caixa.";
                 prg.innerText = "Deseja contabilizar os lançamentos automaticamente?";
                 grpConciliar.classList.add('hidden');
                 grpContabilizar.classList.remove('hidden');
@@ -672,6 +737,7 @@
             calcLiquid();
             const cap = parseFloat(document.getElementById('man-capital').value) || 0;
             const jur = parseFloat(document.getElementById('man-juros').value) || 0;
+            const taxas = parseFloat(document.getElementById('man-taxas').value) || 0;
             const ir = parseFloat(document.getElementById('man-ir').value) || 0;
             const iof = parseFloat(document.getElementById('man-iof').value) || 0;
             const tipo = document.getElementById('man-tipo').value;
@@ -679,7 +745,7 @@
             dadosTemp = {
                 data: document.getElementById('man-data').value.split('-').reverse().join('/'),
                 banco: 'Banco do Brasil', app: 'BB Rende Fácil', tipo: tipo,
-                cap: cap, jur: jur, ir: ir, iof: iof, origem: 'Manual', cssClass: 'badge-manual'
+                cap: cap, jur: jur, taxas: taxas, ir: ir, iof: iof, origem: 'Manual', cssClass: 'badge-manual'
             };
             
             closeModal('modal-manual');
@@ -690,10 +756,9 @@
 
         function salvarParametrizacao(forcarConfirmacao) {
             if(fluxoDesconhecido && forcarConfirmacao) {
-                // R2.7.4 Alerta de fechamento prematuro
                 if(confirm("Ainda existem aplicações aguardando parametrização neste arquivo. Deseja continuar e parametrizar a próxima?")) {
                     alert("Avançando para o Ativo 2 de 3...");
-                    return; // Permanece aberto
+                    return; 
                 }
             }
             fluxoDesconhecido = false;
@@ -707,20 +772,21 @@
         }
 
         function adicionarNaGrid(d) {
-            const liquido = d.cap + d.jur - d.ir - d.iof;
+            const liquido = d.cap + d.jur - d.taxas - d.ir - d.iof;
             d.liquido = liquido; 
             
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td class="text-center"><input type="checkbox" class="row-checkbox"></td>
+                <td class="text-center" style="padding-left: 20px;"><input type="checkbox" class="row-checkbox"></td>
                 <td>${d.data}</td><td>${d.banco}</td><td>${d.app}</td><td>${d.tipo}</td>
                 <td class="text-right">${formatMoeda(d.cap)}</td>
                 <td class="text-right">${formatMoeda(d.jur)}</td>
+                <td class="text-right">${formatMoeda(d.taxas)}</td>
                 <td class="text-right">${formatMoeda(d.ir)}</td>
                 <td class="text-right">${formatMoeda(d.iof)}</td>
-                <td class="text-right" style="font-weight:600;">${formatMoeda(liquido)}</td>
+                <td class="text-right" style="font-weight:600; color: var(--bg-sidebar);">${formatMoeda(liquido)}</td>
                 <td><span class="badge ${d.cssClass}">${d.origem}</span></td>
-                <td class="text-center"><button class="btn-icon" title="Gerar lançamentos Contábeis" onclick="contabilizarLinha()"><i class="fa-solid fa-calculator"></i></button></td>
+                <td class="text-center"><button class="btn-icon" title="Gerar Lançamentos Contábeis" onclick="contabilizarLinha()"><i class="fa-solid fa-calculator"></i></button></td>
             `;
             document.getElementById('grid-body').prepend(tr);
         }
@@ -738,18 +804,18 @@
             const badgeSistema = `<span class="badge-outline-blue">${txtOrigem}</span>`;
             const badgeOFX = `<span class="badge-outline-purple">Imp. OFX</span>`;
 
-            document.getElementById('table-sistema').querySelector('tbody').innerHTML = '<tr><td colspan="7" style="text-align:center; color:#999; padding: 15px;">Nenhum lançamento pendente</td></tr>';
-            document.getElementById('table-extrato').querySelector('tbody').innerHTML = '<tr><td colspan="6" style="text-align:center; color:#999; padding: 15px;">Nenhum lançamento pendente</td></tr>';
+            document.getElementById('table-sistema').querySelector('tbody').innerHTML = '<tr><td colspan="7" style="text-align:center; color:#94a3b8; padding: 20px;">Nenhum lançamento pendente</td></tr>';
+            document.getElementById('table-extrato').querySelector('tbody').innerHTML = '<tr><td colspan="6" style="text-align:center; color:#94a3b8; padding: 20px;">Nenhum lançamento pendente</td></tr>';
 
             const htmlConciliados = `
                 <tr>
-                    <td style="text-align:center;" title="Grupo Conciliado"><i class="fa-solid fa-link" style="color: #2e7d32; font-size:14px;"></i></td>
+                    <td style="text-align:center;" title="Grupo Conciliado"><i class="fa-solid fa-link" style="color: #16a34a; font-size:14px;"></i></td>
                     <td>${dadosTemp.data}</td>
                     <td>1.01.01.02.01.0001 - Banco Brasil</td>
                     <td>Resgate BB Rende Fácil (Liq)</td>
                     <td>${badgeSistema}</td>
                     <td style="text-align: right;" class="val-d table-split-border">${dadosTemp.liquido.toFixed(2).replace('.',',')} D</td>
-                    <td style="padding-left:10px;">${dadosTemp.data}</td>
+                    <td style="padding-left:12px;">${dadosTemp.data}</td>
                     <td>RESGATE APLICACAO</td>
                     <td>${badgeOFX}</td>
                     <td style="text-align: right;" class="val-c">${dadosTemp.liquido.toFixed(2).replace('.',',')} C</td>
@@ -786,7 +852,7 @@
                     <td></td><td></td><td></td><td></td>
                 </tr>
 
-                <tr style="border-bottom: 1px solid #d4d4d4;">
+                <tr style="border-bottom: 1px solid #cbd5e1;">
                     <td></td>
                     <td>${dadosTemp.data}</td>
                     <td>3.01.01.05.01.0007 - Rendimentos</td>
